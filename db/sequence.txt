@@ -1,0 +1,23 @@
+CREATE SEQUENCE seq_reiziger 
+  START WITH 10 
+  INCREMENT BY 1;
+
+CREATE SEQUENCE seq_product
+  START WITH 10 
+  INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER trg_reiziger_id
+  BEFORE INSERT ON reiziger
+  FOR EACH ROW
+    WHEN (new.reizigerid IS NULL)
+BEGIN
+  :new.reizigerID := seq_reiziger.nextval;
+END;
+
+CREATE OR REPLACE TRIGGER trg_product_id
+  BEFORE INSERT ON product
+  FOR EACH ROW
+    WHEN (new.productnummer IS NULL)
+BEGIN
+  :new.productnummer := seq_product.nextval;
+END;
