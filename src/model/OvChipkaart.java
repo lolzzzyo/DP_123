@@ -59,6 +59,18 @@ public class OvChipkaart {
 	public void setReiziger(Reiziger reiziger) {
 		this.reiziger = reiziger;
 	}
+	@Override
+	public boolean equals(Object obj){
+		boolean check = false;
+		if(obj instanceof OvChipkaart){
+		    OvChipkaart otherOV = (OvChipkaart) obj;
+		    if(this.kaartnummer == otherOV.kaartnummer &&
+			this.geldigtot.equals(otherOV.geldigtot)){
+			check = true;
+		    }
+		}
+		return check;
+	}
 	
 	// nodig om de gegevens uit te printen
 	public String toString() {
